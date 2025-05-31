@@ -1,0 +1,13 @@
+.stats {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.stats p {
+    margin: 5px 0;
+    color: #2c3e50;
+    font-size: 1.1em;
+}
