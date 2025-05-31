@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Clock from './components/Clock/Clock';
 import StudentList from './components/StudentList/StudentList';
@@ -14,18 +14,7 @@ interface Student {
 const App: React.FC = () => {
     const [students, setStudents] = useState<Student[]>([]);
     const [newStudentName, setNewStudentName] = useState('');
-    const [currentTime, setCurrentTime] = useState(new Date());
     const [showClock, setShowClock] = useState(true);
-    const [showStudentList, setShowStudentList] = useState(true);
-    const [showAddForm, setShowAddForm] = useState(true);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setCurrentTime(new Date());
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, []);
 
     const handleAddStudent = (e: React.FormEvent) => {
         e.preventDefault();
@@ -62,31 +51,21 @@ const App: React.FC = () => {
                 <button onClick={() => setShowClock(!showClock)}>
                     {showClock ? 'Ukryj zegar' : 'Pokaż zegar'}
                 </button>
-                <button onClick={() => setShowStudentList(!showStudentList)}>
-                    {showStudentList ? 'Ukryj listę uczniów' : 'Pokaż listę uczniów'}
-                </button>
-                <button onClick={() => setShowAddForm(!showAddForm)}>
-                    {showAddForm ? 'Ukryj formularz' : 'Pokaż formularz'}
-                </button>
             </div>
 
-            {showClock && <Clock currentTime={currentTime} />}
+            {showClock && <Clock showDate={true} />}
 
-            {showStudentList && (
-                <StudentList
-                    students={students}
-                    onToggleAttendance={toggleAttendance}
-                    onDeleteStudent={handleDeleteStudent}
-                />
-            )}
+            <StudentList
+                students={students}
+                onToggleAttendance={toggleAttendance}
+                onDeleteStudent={handleDeleteStudent}
+            />
 
-            {showAddForm && (
-                <AddStudentForm
-                    newStudentName={newStudentName}
-                    onNewStudentNameChange={setNewStudentName}
-                    onAddStudent={handleAddStudent}
-                />
-            )}
+            <AddStudentForm
+                newStudentName={newStudentName}
+                onNewStudentNameChange={setNewStudentName}
+                onAddStudent={handleAddStudent}
+            />
 
             <Stats students={students} />
         </div>

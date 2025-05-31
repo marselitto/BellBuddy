@@ -1,0 +1,17 @@
+.clock {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+}
+
+.clock h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.clock p {
+    margin: 5px 0;
+    font-size: 1.2em;
+}
